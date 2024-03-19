@@ -31,8 +31,7 @@ public abstract class BaseValueObject {
     
          return result;
      }
-    public static 
-
+    
     // TODO:Разобраться с сравнением BaseValueObject V
     public override bool Equals(object? obj) {
         //TODO:Реализовать DeepCompare (DeepClone)
