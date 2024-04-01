@@ -37,6 +37,11 @@ public abstract class BaseValueObject {
 
 
     public override int GetHashCode() {
-        return base.GetHashCode();
+        int result = 0;
+        foreach (var prop in this.GetType().GetProperties()) {
+            result += prop.GetHashCode();
+        }
+
+        return result * 5;
     }
 }
