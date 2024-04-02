@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace Domain.ValueObject;
 
 public abstract class BaseValueObject {
@@ -12,27 +14,30 @@ public abstract class BaseValueObject {
         if (obj == null) {
             return false;
         }
+
+        string baseObj = JsonSerializer.Serialize(this);
+        string anotherObj = JsonSerializer.Serialize(obj);
+        //json serializer
+        // if (GetType() != obj.GetType()) {
+        //     return false;
+        // }
+        //
+        // if (obj.GetType().IsPrimitive && GetType().IsPrimitive) {
+        //     return Equals(obj);
+        // }
+        //
+        // var result = true;
+        // foreach (var property in obj.GetType().GetProperties()) {
+        //     var objValue = property.GetValue(this);
+        //     var anotherValue = property.GetValue(obj);
+        //     if (objValue == null
+        //         || anotherValue == null
+        //         || Equals(objValue, anotherValue)) {
+        //         result = false;
+        //     }
+        // }
     
-        if (GetType() != obj.GetType()) {
-            return false;
-        }
-    
-        if (obj.GetType().IsPrimitive && GetType().IsPrimitive) {
-            return Equals(obj);
-        }
-    
-        var result = true;
-        foreach (var property in obj.GetType().GetProperties()) {
-            var objValue = property.GetValue(this);
-            var anotherValue = property.GetValue(obj);
-            if (objValue == null
-                || anotherValue == null
-                || Equals(objValue, anotherValue)) {
-                result = false;
-            }
-        }
-    
-        return result;
+        return baseObj.Equals(anotherObj);
     }
 
 
