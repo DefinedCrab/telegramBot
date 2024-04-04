@@ -27,7 +27,7 @@ namespace Domain.Entities {
 
         
         public override int GetHashCode() {
-            //TODO: Зачем переопределять GetHashCode
+            
             return base.GetHashCode();
         }
     }
